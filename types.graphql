@@ -11,6 +11,7 @@ type Product @model {
   lastVerifiedAt: DateTime
   brand: Brand! @relation(name: "BrandProducts")
   isHidden: Boolean! @defaultValue(value: "false")
+  notes: String
 }
 
 
@@ -23,4 +24,5 @@ type Brand @model {
   products: [Product!]! @relation(name: "BrandProducts")
   boost: Int! @defaultValue(value: 0)
   isHidden: Boolean! @defaultValue(value: "false")
+  notes: String
 }
