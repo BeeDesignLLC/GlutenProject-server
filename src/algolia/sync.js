@@ -1,12 +1,21 @@
 const algoliasearch = require('algoliasearch')
 
-const client = algoliasearch('ALGOLIA_APP_ID', 'ALGOLIA_API_KEY')
-const index = client.initIndex('ALGOLIA_INDEX_NAME')
+const algolia = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_API_KEY'])
+const index = algolia.initIndex(process.env['ALGOLIA_INDEX_NAME'])
 
 const modelName = 'Product'
 
-module.exports = event => {
+const convertNodeToAlgoliaObject = node => ({
+    objectID: node.id,
+    name: node.name,
+    isHidden: node.isHidden,
+    brandName: node.brand.name,
+    brandBoost: node.brand.boost,
+    brandIsHidden: node.brand.isHidden,
+    brandId: node.brand.id,
+})
 
+module.exports = event => {
   if (!process.env['ALGOLIA_APP_ID']) {
     console.log('Please provide a valid Algolia app id!')
     return { error: 'Module not configured correctly.' }
@@ -23,7 +32,7 @@ module.exports = event => {
   }
 
   const mutation = event.data[modelName].mutation
-  const node = convertNodeToAlgoliaObject(event.data[modelName].node)
+  const node = event.data[modelName].node
   const previousValues = event.data[modelName].previousValues
 
   switch (mutation) {
@@ -36,23 +45,14 @@ module.exports = event => {
   }
 }
 
-const convertNodeToAlgoliaObject = node => ({
-    objectID: node.id,
-    name: node.name,
-    brandName: node.brand.name,
-    brandBoost: node.brand.boost,
-    brandIsHidden: node.brand.isHidden,
-    brandId: node.brand.id,
-})
-
 function syncAddedNode(node) {
   console.log('Adding node')
-  return index.addObject(node)
+  return index.addObject(convertNodeToAlgoliaObject(node))
 }
 
 function syncUpdatedNode(node) {
   console.log('Updating node')
-  return index.saveObject(node)
+  return index.saveObject(convertNodeToAlgoliaObject(node))
 }
 
 function syncDeletedNode(node) {
