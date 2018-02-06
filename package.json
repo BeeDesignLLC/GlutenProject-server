@@ -1,5 +1,8 @@
 {
-  "name": "server",
+  "name": "glutenproject-server",
   "version": "1.0.0",
-  "description": "My Graphcool Service"
+  "description": "The Gluten Project Graphcool Service",
+  "dependencies": {
+    "algoliasearch": "^3.24.9"
+  }
 }
