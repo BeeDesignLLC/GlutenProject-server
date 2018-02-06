@@ -10,6 +10,7 @@ type Product @model {
   name: String!
   lastVerifiedAt: DateTime
   brand: Brand! @relation(name: "BrandProducts")
+  isHidden: Boolean! @defaultValue(value: "false")
 }
 
 
@@ -20,4 +21,6 @@ type Brand @model {
 
   name: String!
   products: [Product!]! @relation(name: "BrandProducts")
+  boost: Int! @defaultValue(value: 0)
+  isHidden: Boolean! @defaultValue(value: "false")
 }
