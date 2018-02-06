@@ -1,0 +1,22 @@
+subscription {
+  Brand(filter: {
+    mutation_in: [CREATED, UPDATED]
+  }) {
+    mutation
+    previousValues {
+      id
+    }
+    node {
+      id
+      name
+      boost
+      isHidden
+      products {
+        id
+        name
+        isHidden
+      }
+    }
+  }
+}
+

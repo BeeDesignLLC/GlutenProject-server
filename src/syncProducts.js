@@ -5,16 +5,6 @@ const index = algolia.initIndex(process.env['ALGOLIA_INDEX_NAME'])
 
 const modelName = 'Product'
 
-const convertNodeToAlgoliaObject = node => ({
-    objectID: node.id,
-    name: node.name,
-    isHidden: node.isHidden,
-    brandName: node.brand.name,
-    brandBoost: node.brand.boost,
-    brandIsHidden: node.brand.isHidden,
-    brandId: node.brand.id,
-})
-
 module.exports = event => {
   if (!process.env['ALGOLIA_APP_ID']) {
     console.log('Please provide a valid Algolia app id!')
@@ -32,12 +22,12 @@ module.exports = event => {
   }
 
   const mutation = event.data[modelName].mutation
-  const node = event.data[modelName].node
+  const product = event.data[modelName].node
   const previousValues = event.data[modelName].previousValues
 
   switch (mutation) {
-    case 'CREATED': return syncAddedNode(node)
-    case 'UPDATED': return syncUpdatedNode(node)
+    case 'CREATED': return syncAddedNode(product)
+    case 'UPDATED': return syncUpdatedNode(product)
     case 'DELETED': return syncDeletedNode(previousValues)
     default:
       console.log(`mutation was '${mutation}'. Unable to sync node.`)
@@ -45,14 +35,25 @@ module.exports = event => {
   }
 }
 
+const translateGraphCoolToAlgolia = product => ({
+    objectID: product.id,
+    name: product.name,
+    isHidden: product.isHidden,
+    brandName: product.brand.name,
+    brandBoost: product.brand.boost,
+    brandIsHidden: product.brand.isHidden,
+    brandId: product.brand.id,
+})
+
+
 function syncAddedNode(node) {
   console.log('Adding node')
-  return index.addObject(convertNodeToAlgoliaObject(node))
+  return index.addObject(translateGraphCoolToAlgolia(node))
 }
 
 function syncUpdatedNode(node) {
   console.log('Updating node')
-  return index.saveObject(convertNodeToAlgoliaObject(node))
+  return index.saveObject(translateGraphCoolToAlgolia(node))
 }
 
 function syncDeletedNode(node) {
