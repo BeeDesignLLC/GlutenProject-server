@@ -37,7 +37,7 @@ type ThriveProduct @model {
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  listing: Product! @relation(name: "ThriveListings")
+  listing: Product @relation(name: "ThriveListings")
   name: String!
   brandName: String!
   url: String!
