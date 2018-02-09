@@ -2,19 +2,6 @@
 # based on which the GraphQL API is generated
 
 
-type Product @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-
-  name: String!
-  lastVerifiedAt: DateTime
-  brand: Brand! @relation(name: "BrandProducts")
-  isHidden: Boolean! @defaultValue(value: "false")
-  notes: String
-}
-
-
 type Brand @model {
   id: ID! @isUnique
   createdAt: DateTime!
@@ -22,7 +9,57 @@ type Brand @model {
 
   name: String!
   products: [Product!]! @relation(name: "BrandProducts")
+
   boost: Int! @defaultValue(value: 0)
   isHidden: Boolean! @defaultValue(value: "false")
   notes: String
+}
+
+
+type Product @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  name: String!
+  brand: Brand! @relation(name: "BrandProducts")
+
+  thriveListings: [ThriveProduct!]! @relation(name: "ThriveListings")
+
+  lastVerifiedAt: DateTime
+  isHidden: Boolean! @defaultValue(value: "false")
+  notes: String
+}
+
+
+type ThriveProduct @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  listing: Product! @relation(name: "ThriveListings")
+  name: String!
+  brandName: String!
+  url: String!
+  sku: String!
+  package: String!
+  image: String!
+  price: Float!
+
+  matchStatus: MATCH_STATUS! @defaultValue(value: PENDING)
+  matchScore: MATCH_SCORE! @defaultValue(value: UNKNOWN)
+}
+
+
+enum MATCH_STATUS {
+  PENDING
+  NEEDS_REVIEW
+  MATCHED
+}
+
+enum MATCH_SCORE {
+  UNKNOWN
+  PERFECT
+  POSSIBLE
+  NONE
 }
