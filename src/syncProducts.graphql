@@ -9,12 +9,18 @@ subscription {
     node {
       id
       name
+      isAffiliate
       isHidden
       brand {
         id
         name
         boost
         isHidden
+      }
+      thriveListings {
+        id
+        package
+        price
       }
     }
   }

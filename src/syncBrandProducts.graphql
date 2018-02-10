@@ -14,7 +14,13 @@ subscription {
       products {
         id
         name
+        isAffiliate
         isHidden
+        thriveListings {
+          id
+          package
+          price
+        }
       }
     }
   }
