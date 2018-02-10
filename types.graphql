@@ -27,6 +27,7 @@ type Product @model {
   thriveListings: [ThriveProduct!]! @relation(name: "ThriveListings")
 
   lastVerifiedAt: DateTime
+  isAffiliate: Boolean! @defaultValue(value: "false")
   isHidden: Boolean! @defaultValue(value: "false")
   notes: String
 }
