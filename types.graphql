@@ -40,8 +40,8 @@ type ThriveProduct @model {
   listing: Product @relation(name: "ThriveListings")
   name: String!
   brandName: String!
-  url: String!
-  sku: String!
+  url: String! @isUnique
+  sku: String! @isUnique
   package: String!
   image: String!
   price: Float!
