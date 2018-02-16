@@ -25,6 +25,7 @@ type Product @model {
   brand: Brand! @relation(name: "BrandProducts")
 
   thriveListings: [ThriveProduct!]! @relation(name: "ThriveListings")
+  nutsListings: [NutsProduct!]! @relation(name: "NutsListings")
 
   lastVerifiedAt: DateTime
   isAffiliate: Boolean! @defaultValue(value: "false")
@@ -46,6 +47,30 @@ type ThriveProduct @model {
   package: String!
   image: String!
   price: Float!
+
+  matchStatus: MATCH_STATUS! @defaultValue(value: PENDING)
+  matchScore: MATCH_SCORE! @defaultValue(value: UNKNOWN)
+}
+
+type NutsProduct @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  listing: Product @relation(name: "NutsListings")
+  name: String!
+  brandName: String! @defaultValue(value: "Nuts.com")
+  url: String! @isUnique
+  sku: String! @isUnique
+  image: String!
+  thumbnail: String!
+  price: Float!
+  shortDescription: String!
+  description: String!
+  category: String!
+  subCategory: String!
+  lastUpdated: DateTime!
+  bestSeller: Boolean! @defaultValue(value: "false")
 
   matchStatus: MATCH_STATUS! @defaultValue(value: PENDING)
   matchScore: MATCH_SCORE! @defaultValue(value: UNKNOWN)
