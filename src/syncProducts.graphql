@@ -22,6 +22,10 @@ subscription {
         package
         price
       }
+      nutsListings {
+        id
+        price
+      }
     }
   }
 }

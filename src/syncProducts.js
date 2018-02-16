@@ -51,6 +51,7 @@ const translateGraphCoolToAlgolia = product => ({
   brandIsHidden: product.brand.isHidden,
   brandId: product.brand.id,
   thrive: product.thriveListings,
+  nuts: product.nutsListings,
 })
 
 function syncAddedNode(node) {
