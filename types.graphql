@@ -24,7 +24,7 @@ type Product @model {
 
   name: String!
   brand: Brand! @relation(name: "BrandProducts")
-  gfCert: GF_CERT! @migrationValue(value: GFCO)
+  gfCert: GF_CERT!
   gfCertLevel: Int
 
   parent: Product @relation(name: "ProductVariations")
@@ -52,7 +52,7 @@ type Offer @model {
   id: ID! @isUnique
 
   product: Product! @relation(name: "ProductOffers")
-  merchant: String! @isUnique
+  merchant: String!
   isAffiliate: Boolean!
   url: String! @isUnique
   price: Float
