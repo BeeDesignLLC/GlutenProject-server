@@ -39,6 +39,7 @@ type Product @model {
 
   createdAt: DateTime!
   updatedAt: DateTime!
+  forceSyncTrigger: String
 }
 
 
