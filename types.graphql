@@ -21,6 +21,7 @@ type Product @model {
 
   name: String!
   brand: Brand! @relation(name: "BrandProducts")
+  keywords: String
   gfCert: GF_CERT!
   gfCertLevel: Int
 
