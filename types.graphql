@@ -31,8 +31,6 @@ type Product @model {
   variations: [Product!]! @relation(name: "ProductVariations")
   offers: [Offer!]! @relation(name: "ProductOffers")
 
-  nutsListings: [NutsProduct!]! @relation(name: "NutsListings")
-
   size: String
   description: String
   ingredients: String
@@ -58,31 +56,6 @@ type Offer @model {
 
   createdAt: DateTime!
   updatedAt: DateTime!
-}
-
-
-type NutsProduct @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-
-  listing: Product @relation(name: "NutsListings")
-  name: String!
-  brandName: String! @defaultValue(value: "Nuts.com")
-  url: String! @isUnique
-  sku: String! @isUnique
-  image: String!
-  thumbnail: String!
-  price: Float!
-  shortDescription: String!
-  description: String!
-  category: String!
-  subCategory: String!
-  lastUpdated: DateTime!
-  bestSeller: Boolean! @defaultValue(value: "false")
-
-  matchStatus: MATCH_STATUS! @defaultValue(value: PENDING)
-  matchScore: MATCH_SCORE! @defaultValue(value: UNKNOWN)
 }
 
 
