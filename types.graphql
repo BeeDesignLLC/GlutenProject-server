@@ -31,7 +31,6 @@ type Product @model {
   variations: [Product!]! @relation(name: "ProductVariations")
   offers: [Offer!]! @relation(name: "ProductOffers")
 
-  thriveListings: [ThriveProduct!]! @relation(name: "ThriveListings")
   nutsListings: [NutsProduct!]! @relation(name: "NutsListings")
 
   size: String
@@ -61,24 +60,6 @@ type Offer @model {
   updatedAt: DateTime!
 }
 
-
-type ThriveProduct @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-
-  listing: Product @relation(name: "ThriveListings")
-  name: String!
-  brandName: String!
-  url: String! @isUnique
-  sku: String! @isUnique
-  package: String!
-  image: String!
-  price: Float!
-
-  matchStatus: MATCH_STATUS! @defaultValue(value: PENDING)
-  matchScore: MATCH_SCORE! @defaultValue(value: UNKNOWN)
-}
 
 type NutsProduct @model {
   id: ID! @isUnique
