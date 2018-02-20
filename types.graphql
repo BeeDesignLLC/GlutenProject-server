@@ -18,19 +18,47 @@ type Brand @model {
 
 type Product @model {
   id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  upc: String @isUnique
+  asin: String @isUnique
+  sku: String
 
   name: String!
   brand: Brand! @relation(name: "BrandProducts")
+  gfCert: GF_CERT! @migrationValue(value: GFCO)
+  gfCertLevel: Int
+
+  parent: Product @relation(name: "ProductVariations")
+  variations: [Product!]! @relation(name: "ProductVariations")
+  offers: [Offer!]! @relation(name: "ProductOffers")
 
   thriveListings: [ThriveProduct!]! @relation(name: "ThriveListings")
   nutsListings: [NutsProduct!]! @relation(name: "NutsListings")
+
+  size: String
+  description: String
+  ingredients: String
 
   lastVerifiedAt: DateTime
   isAffiliate: Boolean! @defaultValue(value: "false")
   isHidden: Boolean! @defaultValue(value: "false")
   notes: String
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+
+type Offer @model {
+  id: ID! @isUnique
+
+  product: Product! @relation(name: "ProductOffers")
+  merchant: String! @isUnique
+  isAffiliate: Boolean!
+  url: String! @isUnique
+  price: Float
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 
@@ -90,4 +118,9 @@ enum MATCH_SCORE {
   PERFECT
   POSSIBLE
   NONE
+}
+
+enum GF_CERT {
+  GFCO
+  GFCP
 }
