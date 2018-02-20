@@ -33,7 +33,6 @@ type Product @model {
   ingredients: String
 
   lastVerifiedAt: DateTime
-  isAffiliate: Boolean! @defaultValue(value: "false")
   isHidden: Boolean! @defaultValue(value: "false")
   notes: String
 
