@@ -18,6 +18,7 @@ subscription {
       size
       description
       ingredients
+      keywords
       isHidden
       parent {
         id

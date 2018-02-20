@@ -49,6 +49,7 @@ const translateGraphCoolToAlgolia = product => {
     hasOffers: !!offers.length,
     isAffiliate: offers.some(offer => offer.isAffiliate),
     isHidden: product.isHidden,
+    keywords: product.keywords,
     gfCert: product.gfCert,
     gfCertLevel: product.gfCertLevel,
     size: product.size,
