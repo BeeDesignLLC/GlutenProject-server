@@ -1,0 +1,15 @@
+subscription {
+  Offer(filter: {
+    mutation_in: [CREATED, UPDATED]
+  }) {
+    node {
+      id
+      deleteStatus
+      product {
+        id
+      }
+    }
+  }
+}
+
+

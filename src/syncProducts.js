@@ -41,23 +41,26 @@ module.exports = event => {
   }
 }
 
-const translateGraphCoolToAlgolia = product => ({
-  objectID: product.id,
-  name: product.name,
-  hasOffers: !!product.offers.length,
-  isAffiliate: product.offers.some(offer => offer.isAffiliate),
-  isHidden: product.isHidden,
-  gfCert: product.gfCert,
-  gfCertLevel: product.gfCertLevel,
-  size: product.size,
-  description: product.description,
-  ingredients: product.ingredients,
-  brandName: product.brand.name,
-  brandBoost: product.brand.boost,
-  brandIsHidden: product.brand.isHidden,
-  brandId: product.brand.id,
-  offers: product.offers,
-})
+const translateGraphCoolToAlgolia = product => {
+  const offers = product.offers.filter(offer => offer.deleteStatus !== 'delete')
+  return {
+    objectID: product.id,
+    name: product.name,
+    hasOffers: !!offers.length,
+    isAffiliate: offers.some(offer => offer.isAffiliate),
+    isHidden: product.isHidden,
+    gfCert: product.gfCert,
+    gfCertLevel: product.gfCertLevel,
+    size: product.size,
+    description: product.description,
+    ingredients: product.ingredients,
+    brandName: product.brand.name,
+    brandBoost: product.brand.boost,
+    brandIsHidden: product.brand.isHidden,
+    brandId: product.brand.id,
+    offers,
+  }
+}
 
 function syncAddedNode(node) {
   console.log('Adding node')

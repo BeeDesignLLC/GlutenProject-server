@@ -18,6 +18,12 @@ functions:
     handler:
       code:
         src: ./src/syncBrandProducts.js
+  syncOffers:
+    type: subscription
+    query: ./src/syncOffers.graphql
+    handler:
+      code:
+        src: ./src/syncOffers.js
   # hello:
   #   handler:
   #     code: src/hello.js

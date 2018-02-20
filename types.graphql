@@ -53,6 +53,7 @@ type Offer @model {
 
   createdAt: DateTime!
   updatedAt: DateTime!
+  deleteStatus: String
 }
 
 

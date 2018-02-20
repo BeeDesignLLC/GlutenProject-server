@@ -1,0 +1,36 @@
+import {fromEvent} from 'graphcool-lib'
+
+const updateMutation = `mutation($id: ID! $forceSyncTrigger: String!) {
+  updateProduct(
+		id: $id
+    forceSyncTrigger: $forceSyncTrigger
+	) {
+    id
+  }
+}`
+const deleteMutation = `mutation($id: ID!) {
+  deleteOffer(id: $id) {
+    id
+  }
+}`
+
+export default async event => {
+  try {
+    const api = fromEvent(event).api('simple/v1')
+    const result = event.data.Offer
+    const productId = result.node.product.id
+
+    if (result.node.deleteStatus === 'delete') {
+      await api.request(deleteMutation, {id: result.node.id})
+    }
+
+    await api.request(updateMutation, {
+      id: productId,
+      forceSyncTrigger: new Date().toISOString(),
+    })
+
+    return {event: `Touched ${productId}`}
+  } catch (err) {
+    return {error: err}
+  }
+}

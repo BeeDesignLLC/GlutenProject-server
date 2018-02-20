@@ -30,6 +30,7 @@ subscription {
         merchant
         isAffiliate
         price
+        deleteStatus
       }
       brand {
         id
