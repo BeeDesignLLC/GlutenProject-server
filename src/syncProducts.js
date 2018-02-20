@@ -44,14 +44,19 @@ module.exports = event => {
 const translateGraphCoolToAlgolia = product => ({
   objectID: product.id,
   name: product.name,
-  isAffiliate: product.isAffiliate,
+  hasOffers: !!product.offers.length,
+  isAffiliate: product.offers.some(offer => offer.isAffiliate),
   isHidden: product.isHidden,
+  gfCert: product.gfCert,
+  gfCertLevel: product.gfCertLevel,
+  size: product.size,
+  description: product.description,
+  ingredients: product.ingredients,
   brandName: product.brand.name,
   brandBoost: product.brand.boost,
   brandIsHidden: product.brand.isHidden,
   brandId: product.brand.id,
-  thrive: product.thriveListings,
-  nuts: product.nutsListings,
+  offers: product.offers,
 })
 
 function syncAddedNode(node) {

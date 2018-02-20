@@ -3,28 +3,40 @@ subscription {
     mutation_in: [CREATED, UPDATED, DELETED]
   }) {
     mutation
+    updatedFields
     previousValues {
       objectID: id
     }
     node {
       id
+      upc
+      asin
+      sku
       name
+      gfCert
+      gfCertLevel
+      size
+      description
+      ingredients
       isAffiliate
       isHidden
+      parent {
+        id
+      }
+      variations {
+        id
+      }
+      offers {
+        id
+        merchant
+        isAffiliate
+        price
+      }
       brand {
         id
         name
         boost
         isHidden
-      }
-      thriveListings {
-        id
-        package
-        price
-      }
-      nutsListings {
-        id
-        price
       }
     }
   }

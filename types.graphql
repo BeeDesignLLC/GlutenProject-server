@@ -1,6 +1,3 @@
-# The following types define the data model of the example service
-# based on which the GraphQL API is generated
-
 
 type Brand @model {
   id: ID! @isUnique

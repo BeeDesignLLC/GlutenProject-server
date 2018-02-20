@@ -12,16 +12,16 @@ functions:
           ALGOLIA_APP_ID: ${env:ALGOLIA_APP_ID}
           ALGOLIA_API_KEY: ${env:ALGOLIA_API_KEY}
           ALGOLIA_INDEX_NAME: ${env:ALGOLIA_INDEX_NAME}
-  syncBrandProducts:
-    type: subscription
-    query: ./src/syncBrandProducts.graphql
-    handler:
-      code:
-        src: ./src/syncBrandProducts.js
-        environment:
-          ALGOLIA_APP_ID: ${env:ALGOLIA_APP_ID}
-          ALGOLIA_API_KEY: ${env:ALGOLIA_API_KEY}
-          ALGOLIA_INDEX_NAME: ${env:ALGOLIA_INDEX_NAME}
+  # syncBrandProducts:
+  #   type: subscription
+  #   query: ./src/syncBrandProducts.graphql
+  #   handler:
+  #     code:
+  #       src: ./src/syncBrandProducts.js
+  #       environment:
+  #         ALGOLIA_APP_ID: ${env:ALGOLIA_APP_ID}
+  #         ALGOLIA_API_KEY: ${env:ALGOLIA_API_KEY}
+  #         ALGOLIA_INDEX_NAME: ${env:ALGOLIA_INDEX_NAME}
   hello:
     handler:
       code: src/hello.js
