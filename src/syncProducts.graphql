@@ -19,6 +19,7 @@ subscription {
       description
       ingredients
       keywords
+      boost
       isHidden
       parent {
         id
