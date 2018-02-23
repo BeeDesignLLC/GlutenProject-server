@@ -6,6 +6,8 @@ type Brand @model {
 
   name: String!
   products: [Product!]! @relation(name: "BrandProducts")
+  whereToBuyUrl: String
+  allerganStatementUrl: String
 
   boost: Int! @defaultValue(value: 0)
   isHidden: Boolean! @defaultValue(value: "false")

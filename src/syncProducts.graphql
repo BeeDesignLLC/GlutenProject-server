@@ -38,6 +38,7 @@ subscription {
         id
         name
         boost
+        whereToBuyUrl
         isHidden
       }
     }
