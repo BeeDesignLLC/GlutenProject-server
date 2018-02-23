@@ -36,8 +36,9 @@ type Product @model {
   lastVerifiedAt: DateTime
   boost: Int! @defaultValue(value: 0) @migrationValue(value: 0)
   isHidden: Boolean! @defaultValue(value: "false")
-  notes: String
+  isOrganic: Boolean
 
+  notes: String
   createdAt: DateTime!
   updatedAt: DateTime!
   forceSyncTrigger: String
