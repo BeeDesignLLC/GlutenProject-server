@@ -10,9 +10,9 @@
     "test": "exit"
   },
   "dependencies": {
-    "algoliasearch": "^3.24.9",
-    "graphcool-lib": "^0.1.4",
-    "p-queue": "^2.3.0"
+    "algoliasearch": "^3.24.11",
+    "graphcool-lib": "0.1.4",
+    "p-queue": "2.3.0"
   },
   "engines": {
     "node": "9"

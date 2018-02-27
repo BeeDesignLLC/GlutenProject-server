@@ -10,9 +10,9 @@ agentkeepalive@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/agentkeepalive/-/agentkeepalive-2.2.0.tgz#c5d1bd4b129008f1163f236f86e5faea2026e2ef"
 
-algoliasearch@^3.24.9:
-  version "3.24.9"
-  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.24.9.tgz#19063470efe5b6779ec081394b1f7aa400438273"
+algoliasearch@^3.24.11:
+  version "3.24.11"
+  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.24.11.tgz#82bb5fd5dd2cc70c993f5500fa54d9f91c62f11b"
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.8"
@@ -124,7 +124,7 @@ global@^4.3.2:
     min-document "^2.19.0"
     process "~0.5.1"
 
-graphcool-lib@^0.1.4:
+graphcool-lib@0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/graphcool-lib/-/graphcool-lib-0.1.4.tgz#0028b6d9b10dbf4d4f50c0d3ce4ccfcac18acaff"
   dependencies:
@@ -214,7 +214,7 @@ object-keys@^1.0.11, object-keys@~1.0.0:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
 
-p-queue@^2.3.0:
+p-queue@2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/p-queue/-/p-queue-2.3.0.tgz#65d55e71bc1500fc413122da98ae457ff8a7c038"
 
