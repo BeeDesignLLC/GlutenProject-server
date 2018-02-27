@@ -2,9 +2,19 @@
   "name": "glutenproject-server",
   "version": "1.0.0",
   "description": "The Gluten Project Graphcool Service",
+  "repository": "git@github.com:BeeDesignLLC/GlutenProject-server.git",
+  "author": "Brandon Bayer <b@bayer.ws>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "exit"
+  },
   "dependencies": {
     "algoliasearch": "^3.24.9",
     "graphcool-lib": "^0.1.4",
     "p-queue": "^2.3.0"
+  },
+  "engines": {
+    "node": "9"
   }
 }
