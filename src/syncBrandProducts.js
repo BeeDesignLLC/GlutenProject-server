@@ -27,7 +27,7 @@ export default async event => {
       )
     }
 
-    await queue.onEmpty()
+    await queue.onIdle()
 
     return {event: `Touched ${products.length} products`}
   } catch (err) {
