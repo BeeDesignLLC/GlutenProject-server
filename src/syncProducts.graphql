@@ -15,6 +15,7 @@ subscription {
       name
       gfCert
       gfCertLevel
+      image
       size
       description
       ingredients

@@ -31,6 +31,7 @@ type Product @model {
   variations: [Product!]! @relation(name: "ProductVariations")
   offers: [Offer!]! @relation(name: "ProductOffers")
 
+  image: String
   size: String
   description: String
   ingredients: String

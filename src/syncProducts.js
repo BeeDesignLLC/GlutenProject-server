@@ -41,6 +41,16 @@ module.exports = event => {
   }
 }
 
+const bestPriceFrom = offers => {
+  if (!offers.length) return null
+
+  const prices = offers.map(offer => offer.price).sort()
+
+  if (!prices.length) return null
+
+  return prices[0]
+}
+
 const translateGraphCoolToAlgolia = product => {
   const offers = product.offers.filter(offer => offer.deleteStatus !== 'delete')
   return {
@@ -53,6 +63,7 @@ const translateGraphCoolToAlgolia = product => {
     keywords: product.keywords,
     gfCert: product.gfCert,
     gfCertLevel: product.gfCertLevel,
+    image: product.image,
     size: product.size,
     description: product.description,
     ingredients: product.ingredients,
@@ -62,6 +73,7 @@ const translateGraphCoolToAlgolia = product => {
     brandId: product.brand.id,
     brandWhereToBuyUrl: product.brand.whereToBuyUrl,
     offers,
+    bestPrice: bestPriceFrom(offers),
   }
 }
 
