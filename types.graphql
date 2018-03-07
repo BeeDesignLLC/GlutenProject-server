@@ -18,8 +18,9 @@ type Brand @model {
 type Product @model {
   id: ID! @isUnique
   upc: String @isUnique
-  asin: String @isUnique
+  ean: String @isUnique
   sku: String
+  asin: String @isUnique
 
   name: String!
   brand: Brand! @relation(name: "BrandProducts")
@@ -32,12 +33,13 @@ type Product @model {
   offers: [Offer!]! @relation(name: "ProductOffers")
 
   image: String
+  amazonImage: String
   size: String
   description: String
   ingredients: String
 
   lastVerifiedAt: DateTime
-  boost: Int! @defaultValue(value: 0) @migrationValue(value: 0)
+  boost: Int! @defaultValue(value: 0)
   isHidden: Boolean! @defaultValue(value: "false")
   isOrganic: Boolean
 
@@ -56,6 +58,7 @@ type Offer @model {
   isAffiliate: Boolean!
   url: String! @isUnique
   price: Float
+  quantity: Int
 
   createdAt: DateTime!
   updatedAt: DateTime!

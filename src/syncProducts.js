@@ -64,6 +64,7 @@ const translateGraphCoolToAlgolia = product => {
     gfCert: product.gfCert,
     gfCertLevel: product.gfCertLevel,
     image: product.image,
+    amazonImage: product.amazonImage,
     size: product.size,
     description: product.description,
     ingredients: product.ingredients,
