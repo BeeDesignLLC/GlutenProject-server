@@ -12,6 +12,7 @@
   "dependencies": {
     "algoliasearch": "^3.24.11",
     "graphcool-lib": "0.1.4",
+    "imgix-core-js": "^1.1.1",
     "p-queue": "2.3.0"
   },
   "engines": {

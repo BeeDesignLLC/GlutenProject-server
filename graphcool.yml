@@ -12,6 +12,7 @@ functions:
           ALGOLIA_APP_ID: ${env:ALGOLIA_APP_ID}
           ALGOLIA_API_KEY: ${env:ALGOLIA_API_KEY}
           ALGOLIA_INDEX_NAME: ${env:ALGOLIA_INDEX_NAME}
+          IMGIX_TOKEN: ${env:IMGIX_TOKEN}
   syncBrandProducts:
     type: subscription
     query: ./src/syncBrandProducts.graphql
