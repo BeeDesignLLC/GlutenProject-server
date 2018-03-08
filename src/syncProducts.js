@@ -1,10 +1,16 @@
 const algoliasearch = require('algoliasearch')
+const ImgixClient = require('imgix-core-js')
 
 const algolia = algoliasearch(
   process.env['ALGOLIA_APP_ID'],
   process.env['ALGOLIA_API_KEY'],
 )
 const index = algolia.initIndex(process.env['ALGOLIA_INDEX_NAME'])
+
+const imgix = new ImgixClient({
+  host: 'tgp.imgix.net',
+  secureURLToken: process.env.IMGIX_TOKEN,
+})
 
 const modelName = 'Product'
 
@@ -63,7 +69,11 @@ const translateGraphCoolToAlgolia = product => {
     keywords: product.keywords,
     gfCert: product.gfCert,
     gfCertLevel: product.gfCertLevel,
-    image: product.image,
+    image: imgix.buildURL(product.image, {auto:'format', w:300, h:300}),
+    imageDpr2: imgix.buildURL(product.image, {auto:'format', w:300, h:300, dpr:2, q:50}),
+    imageDpr3: imgix.buildURL(product.image, {auto:'format', w:300, h:300, dpr:3, q:40}),
+    imageDpr4: imgix.buildURL(product.image, {auto:'format', w:300, h:300, dpr:4, q:30}),
+    amazonImage: product.amazonImage,
     size: product.size,
     description: product.description,
     ingredients: product.ingredients,
