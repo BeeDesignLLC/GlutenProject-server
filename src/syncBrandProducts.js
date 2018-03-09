@@ -1,3 +1,10 @@
+const raven = require('raven')
+raven
+  .config(process.env.SENTRY_DSN, {
+    logger: 'server',
+    name: 'syncBrandProducts',
+  })
+  .install()
 import {fromEvent} from 'graphcool-lib'
 const PQueue = require('p-queue')
 const queue = new PQueue({concurrency: 30})
@@ -31,6 +38,7 @@ export default async event => {
 
     return {event: `Touched ${products.length} products`}
   } catch (err) {
+    raven.captureException(err, {extra: event})
     return {error: err}
   }
 }

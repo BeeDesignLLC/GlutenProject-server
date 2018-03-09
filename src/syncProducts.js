@@ -1,3 +1,10 @@
+const raven = require('raven')
+raven
+  .config(process.env.SENTRY_DSN, {
+    logger: 'server',
+    name: 'syncProducts',
+  })
+  .install()
 const algoliasearch = require('algoliasearch')
 const ImgixClient = require('imgix-core-js')
 
@@ -15,35 +22,39 @@ const imgix = new ImgixClient({
 const modelName = 'Product'
 
 module.exports = event => {
-  if (!process.env['ALGOLIA_APP_ID']) {
-    console.log('Please provide a valid Algolia app id!')
-    return {error: 'Module not configured correctly.'}
-  }
+  try {
+    if (!process.env['ALGOLIA_APP_ID']) {
+      console.log('Please provide a valid Algolia app id!')
+      return {error: 'Module not configured correctly.'}
+    }
 
-  if (!process.env['ALGOLIA_API_KEY']) {
-    console.log('Please provide a valid Algolia api key!')
-    return {error: 'Module not configured correctly.'}
-  }
+    if (!process.env['ALGOLIA_API_KEY']) {
+      console.log('Please provide a valid Algolia api key!')
+      return {error: 'Module not configured correctly.'}
+    }
 
-  if (!process.env['ALGOLIA_INDEX_NAME']) {
-    console.log('Please provide a valid Algolia index name!')
-    return {error: 'Module not configured correctly.'}
-  }
+    if (!process.env['ALGOLIA_INDEX_NAME']) {
+      console.log('Please provide a valid Algolia index name!')
+      return {error: 'Module not configured correctly.'}
+    }
 
-  const mutation = event.data[modelName].mutation
-  const product = event.data[modelName].node
-  const previousValues = event.data[modelName].previousValues
+    const mutation = event.data[modelName].mutation
+    const product = event.data[modelName].node
+    const previousValues = event.data[modelName].previousValues
 
-  switch (mutation) {
-    case 'CREATED':
-      return syncAddedNode(product)
-    case 'UPDATED':
-      return syncUpdatedNode(product)
-    case 'DELETED':
-      return syncDeletedNode(previousValues)
-    default:
-      console.log(`mutation was '${mutation}'. Unable to sync node.`)
-      return Promise.resolve()
+    switch (mutation) {
+      case 'CREATED':
+        return syncAddedNode(product)
+      case 'UPDATED':
+        return syncUpdatedNode(product)
+      case 'DELETED':
+        return syncDeletedNode(previousValues)
+      default:
+        console.log(`mutation was '${mutation}'. Unable to sync node.`)
+        return Promise.resolve()
+    }
+  } catch (err) {
+    raven.captureException(err, {extra: event})
   }
 }
 
@@ -69,10 +80,28 @@ const translateGraphCoolToAlgolia = product => {
     keywords: product.keywords,
     gfCert: product.gfCert,
     gfCertLevel: product.gfCertLevel,
-    image: imgix.buildURL(product.image, {auto:'format', w:300, h:300}),
-    imageDpr2: imgix.buildURL(product.image, {auto:'format', w:300, h:300, dpr:2, q:50}),
-    imageDpr3: imgix.buildURL(product.image, {auto:'format', w:300, h:300, dpr:3, q:40}),
-    imageDpr4: imgix.buildURL(product.image, {auto:'format', w:300, h:300, dpr:4, q:30}),
+    image: imgix.buildURL(product.image, {auto: 'format', w: 300, h: 300}),
+    imageDpr2: imgix.buildURL(product.image, {
+      auto: 'format',
+      w: 300,
+      h: 300,
+      dpr: 2,
+      q: 50,
+    }),
+    imageDpr3: imgix.buildURL(product.image, {
+      auto: 'format',
+      w: 300,
+      h: 300,
+      dpr: 3,
+      q: 40,
+    }),
+    imageDpr4: imgix.buildURL(product.image, {
+      auto: 'format',
+      w: 300,
+      h: 300,
+      dpr: 4,
+      q: 30,
+    }),
     amazonImage: product.amazonImage,
     size: product.size,
     description: product.description,

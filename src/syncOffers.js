@@ -1,3 +1,10 @@
+const raven = require('raven')
+raven
+  .config(process.env.SENTRY_DSN, {
+    logger: 'server',
+    name: 'syncOffers',
+  })
+  .install()
 import {fromEvent} from 'graphcool-lib'
 
 const updateMutation = `mutation($id: ID! $forceSyncTrigger: String!) {
@@ -31,6 +38,7 @@ export default async event => {
 
     return {event: `Touched ${productId}`}
   } catch (err) {
+    raven.captureException(err, {extra: event})
     return {error: err}
   }
 }

@@ -13,18 +13,23 @@ functions:
           ALGOLIA_API_KEY: ${env:ALGOLIA_API_KEY}
           ALGOLIA_INDEX_NAME: ${env:ALGOLIA_INDEX_NAME}
           IMGIX_TOKEN: ${env:IMGIX_TOKEN}
+          SENTRY_DSN: ${env:SENTRY_DSN}
   syncBrandProducts:
     type: subscription
     query: ./src/syncBrandProducts.graphql
     handler:
       code:
         src: ./src/syncBrandProducts.js
+        environment:
+          SENTRY_DSN: ${env:SENTRY_DSN}
   syncOffers:
     type: subscription
     query: ./src/syncOffers.graphql
     handler:
       code:
         src: ./src/syncOffers.js
+        environment:
+          SENTRY_DSN: ${env:SENTRY_DSN}
   # hello:
   #   handler:
   #     code: src/hello.js
