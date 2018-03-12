@@ -18,6 +18,13 @@ const imgix = new ImgixClient({
   host: 'tgp.imgix.net',
   secureURLToken: process.env.IMGIX_TOKEN,
 })
+const imageUrl = (...args) => {
+  if (typeof args[0] === 'string') {
+    return imgix.buildURL.apply(imgix, args)
+  } else {
+    return null
+  }
+}
 
 const modelName = 'Product'
 
@@ -82,23 +89,23 @@ const translateGraphCoolToAlgolia = product => {
     gfCert: product.gfCert,
     gfCertLevel: product.gfCertLevel,
     images: {
-      preview: imgix.buildURL(product.image, {auto: 'format', w: 300, h: 300}),
+      preview: imageUrl(product.image, {auto: 'format', w: 300, h: 300}),
       amazon: product.amazonImage,
-      dpr2: imgix.buildURL(product.image, {
+      dpr2: imageUrl(product.image, {
         auto: 'format',
         w: 300,
         h: 300,
         dpr: 2,
         q: 50,
       }),
-      dpr3: imgix.buildURL(product.image, {
+      dpr3: imageUrl(product.image, {
         auto: 'format',
         w: 300,
         h: 300,
         dpr: 3,
         q: 40,
       }),
-      dpr4: imgix.buildURL(product.image, {
+      dpr4: imageUrl(product.image, {
         auto: 'format',
         w: 300,
         h: 300,
