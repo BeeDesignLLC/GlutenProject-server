@@ -22,6 +22,8 @@ type Product @model {
   sku: String
   asin: String @isUnique
 
+  slug: String @isUnique
+
   name: String!
   brand: Brand! @relation(name: "BrandProducts")
   keywords: String

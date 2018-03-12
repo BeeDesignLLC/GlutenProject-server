@@ -73,6 +73,7 @@ const translateGraphCoolToAlgolia = product => {
   return {
     objectID: product.id,
     name: product.name,
+    slug: product.slug,
     hasOffers: !!offers.length || !!product.brand.whereToBuyUrl,
     isAffiliate: offers.some(offer => offer.isAffiliate),
     isHidden: product.isHidden,
