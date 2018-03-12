@@ -18,8 +18,6 @@ subscription {
       gfCertLevel
       image
       amazonImage
-      size
-      description
       ingredients
       keywords
       boost
