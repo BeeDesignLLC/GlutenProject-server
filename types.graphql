@@ -27,8 +27,7 @@ type Product @model {
   name: String!
   brand: Brand! @relation(name: "BrandProducts")
   keywords: String
-  gfCert: GF_CERT!
-  gfCertLevel: Int
+  gfCerts: [GF_CERT!]! @migrationValue(value: "[GFCO]")
 
   parent: Product @relation(name: "ProductVariations")
   variations: [Product!]! @relation(name: "ProductVariations")

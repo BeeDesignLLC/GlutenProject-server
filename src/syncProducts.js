@@ -5,26 +5,15 @@ raven
     name: 'syncProducts',
   })
   .install()
-const algoliasearch = require('algoliasearch')
-const ImgixClient = require('imgix-core-js')
 
+const algoliasearch = require('algoliasearch')
 const algolia = algoliasearch(
   process.env['ALGOLIA_APP_ID'],
   process.env['ALGOLIA_API_KEY'],
 )
 const index = algolia.initIndex(process.env['ALGOLIA_INDEX_NAME'])
 
-const imgix = new ImgixClient({
-  host: 'tgp.imgix.net',
-  secureURLToken: process.env.IMGIX_TOKEN,
-})
-const imageUrl = (...args) => {
-  if (typeof args[0] === 'string') {
-    return imgix.buildURL.apply(imgix, args)
-  } else {
-    return null
-  }
-}
+import imgix from './utils/imgix'
 
 const modelName = 'Product'
 
@@ -86,32 +75,31 @@ const translateGraphCoolToAlgolia = product => {
     isHidden: product.isHidden,
     boost: product.boost,
     keywords: product.keywords,
-    gfCert: product.gfCert,
-    gfCertLevel: product.gfCertLevel,
-    images: {
-      preview: imageUrl(product.image, {auto: 'format', w: 300, h: 300}),
-      amazon: product.amazonImage,
-      dpr2: imageUrl(product.image, {
+    gfCerts: product.gfCerts,
+    thumbnails: {
+      dpr1: imgix(product.image, {auto: 'format', w: 300, h: 300}),
+      dpr2: imgix(product.image, {
         auto: 'format',
         w: 300,
         h: 300,
         dpr: 2,
         q: 50,
       }),
-      dpr3: imageUrl(product.image, {
+      dpr3: imgix(product.image, {
         auto: 'format',
         w: 300,
         h: 300,
         dpr: 3,
         q: 40,
       }),
-      dpr4: imageUrl(product.image, {
+      dpr4: imgix(product.image, {
         auto: 'format',
         w: 300,
         h: 300,
         dpr: 4,
         q: 30,
       }),
+      amazon: product.amazonImage,
     },
     ingredients: product.ingredients,
     brandName: product.brand.name,

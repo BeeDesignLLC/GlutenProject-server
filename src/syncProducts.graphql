@@ -14,8 +14,7 @@ subscription {
       sku
       name
       slug
-      gfCert
-      gfCertLevel
+      gfCerts
       image
       amazonImage
       ingredients

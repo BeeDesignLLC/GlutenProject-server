@@ -2,6 +2,14 @@ types: ./types.graphql
 
 
 functions:
+  productImages:
+    type: resolver
+    schema: src/productImages.graphql
+    handler:
+      code:
+        src: src/productImages.js
+        environment:
+          IMGIX_TOKEN: ${env:IMGIX_TOKEN}
   syncProducts:
     type: subscription
     query: ./src/syncProducts.graphql
@@ -9,10 +17,10 @@ functions:
       code:
         src: ./src/syncProducts.js
         environment:
+          IMGIX_TOKEN: ${env:IMGIX_TOKEN}
           ALGOLIA_APP_ID: ${env:ALGOLIA_APP_ID}
           ALGOLIA_API_KEY: ${env:ALGOLIA_API_KEY}
           ALGOLIA_INDEX_NAME: ${env:ALGOLIA_INDEX_NAME}
-          IMGIX_TOKEN: ${env:IMGIX_TOKEN}
           SENTRY_DSN: ${env:SENTRY_DSN}
   syncBrandProducts:
     type: subscription
@@ -30,11 +38,6 @@ functions:
         src: ./src/syncOffers.js
         environment:
           SENTRY_DSN: ${env:SENTRY_DSN}
-  # hello:
-  #   handler:
-  #     code: src/hello.js
-  #   type: resolver
-  #   schema: src/hello.graphql
 
 
 permissions:

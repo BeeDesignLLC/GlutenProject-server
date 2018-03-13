@@ -1,0 +1,11 @@
+type ImagePayload {
+  dpr1: String
+  dpr2: String
+  dpr3: String
+  dpr4: String
+  amazon: String
+}
+
+extend type Query {
+  productImages(slug: String!): ImagePayload
+}
