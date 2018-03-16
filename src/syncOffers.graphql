@@ -2,6 +2,7 @@ subscription {
   Offer(filter: {
     mutation_in: [CREATED, UPDATED]
   }) {
+    mutation
     node {
       id
       deleteStatus

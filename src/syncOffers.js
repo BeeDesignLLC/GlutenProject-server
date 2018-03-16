@@ -31,12 +31,18 @@ export default async event => {
       await api.request(deleteMutation, {id: result.node.id})
     }
 
-    await api.request(updateMutation, {
-      id: productId,
-      forceSyncTrigger: new Date().toISOString(),
-    })
+    if (
+      result.mutation === 'CREATED' ||
+      result.node.deleteStatus === 'delete'
+    ) {
+      await api.request(updateMutation, {
+        id: productId,
+        forceSyncTrigger: new Date().toISOString(),
+      })
+      return {event: `Touched ${productId}`}
+    }
 
-    return {event: `Touched ${productId}`}
+    return {event: 'nothing to do'}
   } catch (err) {
     raven.captureException(err, {extra: event})
     return {error: err}
