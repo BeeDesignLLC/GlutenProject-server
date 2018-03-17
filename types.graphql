@@ -38,6 +38,7 @@ type Product @model {
   size: String
   description: String
   ingredients: String
+  facilityStatement: String
 
   lastVerifiedAt: DateTime
   boost: Int! @defaultValue(value: 0)
