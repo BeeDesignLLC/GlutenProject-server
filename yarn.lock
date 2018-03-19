@@ -10,9 +10,9 @@ agentkeepalive@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/agentkeepalive/-/agentkeepalive-2.2.0.tgz#c5d1bd4b129008f1163f236f86e5faea2026e2ef"
 
-algoliasearch@^3.24.11:
-  version "3.24.11"
-  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.24.11.tgz#82bb5fd5dd2cc70c993f5500fa54d9f91c62f11b"
+algoliasearch@3.25.1:
+  version "3.25.1"
+  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.25.1.tgz#e543108b528e5c89338834473cb8fb082d13d11f"
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.8"
@@ -174,7 +174,7 @@ iconv-lite@~0.4.13:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
-imgix-core-js@^1.1.1:
+imgix-core-js@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/imgix-core-js/-/imgix-core-js-1.1.1.tgz#892bc1659738878cacd4b8feb5dc9e9d91e9f837"
   dependencies:
@@ -185,13 +185,34 @@ inherits@^2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
+is-blank@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-blank/-/is-blank-1.0.0.tgz#60e39beb41f92c3b27acbb5029cb0f29f983ee67"
+  dependencies:
+    is-empty "0.0.1"
+    is-whitespace "^0.3.0"
+
 is-buffer@~1.1.1:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
 
+is-empty@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/is-empty/-/is-empty-0.0.1.tgz#09fdc3d649dda5969156c0853a9b76bd781c5a33"
+
+is-present@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-present/-/is-present-1.0.0.tgz#29c9b8e8e6e786a594c292fc7239aa24be70b80c"
+  dependencies:
+    is-blank "1.0.0"
+
 is-stream@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
+
+is-whitespace@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/is-whitespace/-/is-whitespace-0.3.0.tgz#1639ecb1be036aec69a54cbb401cfbed7114ab7f"
 
 isarray@^2.0.1:
   version "2.0.2"
@@ -261,7 +282,7 @@ querystring-es3@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
 
-raven@^2.4.2:
+raven@2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/raven/-/raven-2.4.2.tgz#0129e2adc30788646fd530b67d08a8ce25d4f6dc"
   dependencies:

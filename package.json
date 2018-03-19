@@ -10,11 +10,12 @@
     "test": "exit"
   },
   "dependencies": {
-    "algoliasearch": "^3.24.11",
+    "algoliasearch": "3.25.1",
     "graphcool-lib": "0.1.4",
-    "imgix-core-js": "^1.1.1",
+    "imgix-core-js": "1.1.1",
+    "is-present": "1.0.0",
     "p-queue": "2.3.1",
-    "raven": "^2.4.2"
+    "raven": "2.4.2"
   },
   "engines": {
     "node": "9"

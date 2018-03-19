@@ -6,6 +6,7 @@ raven
   })
   .install()
 
+const isPresent = require('is-present')
 const algoliasearch = require('algoliasearch')
 const algolia = algoliasearch(
   process.env['ALGOLIA_APP_ID'],
@@ -114,11 +115,13 @@ const translateGraphCoolToAlgolia = product => {
 }
 
 function syncAddedNode(node) {
+  if (!isPresent(node)) return false
   console.log('Adding node')
   return index.addObject(translateGraphCoolToAlgolia(node))
 }
 
 function syncUpdatedNode(node) {
+  if (!isPresent(node)) return false
   console.log('Updating node')
   return index.saveObject(translateGraphCoolToAlgolia(node))
 }
