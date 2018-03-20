@@ -5,6 +5,7 @@ raven
     name: 'syncOffers',
   })
   .install()
+const isPresent = require('is-present')
 import {fromEvent} from 'graphcool-lib'
 
 const updateMutation = `mutation($id: ID! $forceSyncTrigger: String!) {
