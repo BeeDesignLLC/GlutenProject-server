@@ -26,14 +26,14 @@ export default async event => {
   try {
     const api = fromEvent(event).api('simple/v1')
     const result = event.data.Offer
+
+    if (!isPresent(result.node)) {
+      return {event: 'result.node is null'}
+    }
     const {product} = result.node
 
     if (result.node.deleteStatus === 'delete') {
       await api.request(deleteMutation, {id: result.node.id})
-    }
-
-    if (!isPresent(product)) {
-      return {event: 'product is null'}
     }
 
     if (
