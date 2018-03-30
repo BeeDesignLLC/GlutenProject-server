@@ -3,7 +3,6 @@ type ImagePayload {
   dpr2: String
   dpr3: String
   dpr4: String
-  amazon: String
 }
 
 extend type Query {

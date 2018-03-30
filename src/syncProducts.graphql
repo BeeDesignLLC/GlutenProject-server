@@ -16,7 +16,7 @@ subscription {
       slug
       gfCerts
       image
-      amazonImage
+      imageSource
       ingredients
       keywords
       boost

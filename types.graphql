@@ -27,17 +27,20 @@ type Product @model {
   name: String!
   brand: Brand! @relation(name: "BrandProducts")
   keywords: String
-  gfCerts: [GF_CERT!]! @migrationValue(value: "[GFCO]")
+  gfCerts: [GF_CERT!]!
 
   parent: Product @relation(name: "ProductVariations")
   variations: [Product!]! @relation(name: "ProductVariations")
   offers: [Offer!]! @relation(name: "ProductOffers")
 
   image: String
-  amazonImage: String
-  size: String
+  imageSource: String
   description: String
+  descriptionSource: String
   ingredients: String
+  ingredientsSource: String
+
+  size: String
   facilityStatement: String
 
   lastVerifiedAt: DateTime

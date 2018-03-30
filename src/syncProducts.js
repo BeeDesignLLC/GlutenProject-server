@@ -8,13 +8,10 @@ raven
 
 const isPresent = require('is-present')
 const algoliasearch = require('algoliasearch')
-const algolia = algoliasearch(
-  process.env['ALGOLIA_APP_ID'],
-  process.env['ALGOLIA_API_KEY'],
-)
+const algolia = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_API_KEY'])
 const index = algolia.initIndex(process.env['ALGOLIA_INDEX_NAME'])
 
-import imgix from './utils/imgix'
+import {getThumbnails} from './utils/images'
 
 const modelName = 'Product'
 
@@ -78,31 +75,6 @@ const translateGraphCoolToAlgolia = product => {
     boost: product.boost,
     keywords: product.keywords,
     gfCerts: product.gfCerts,
-    thumbnails: {
-      dpr1: imgix(product.image, {auto: 'format', w: 300, h: 300}),
-      dpr2: imgix(product.image, {
-        auto: 'format',
-        w: 300,
-        h: 300,
-        dpr: 2,
-        q: 50,
-      }),
-      dpr3: imgix(product.image, {
-        auto: 'format',
-        w: 300,
-        h: 300,
-        dpr: 3,
-        q: 40,
-      }),
-      dpr4: imgix(product.image, {
-        auto: 'format',
-        w: 300,
-        h: 300,
-        dpr: 4,
-        q: 30,
-      }),
-      amazon: product.amazonImage,
-    },
     ingredients: product.ingredients,
     brandName: product.brand.name,
     brandBoost: product.brand.boost,
@@ -111,6 +83,7 @@ const translateGraphCoolToAlgolia = product => {
     brandWhereToBuyUrl: product.brand.whereToBuyUrl,
     offers,
     bestPrice: bestPriceFrom(offers),
+    thumbnails: getThumbnails(product),
   }
 }
 
