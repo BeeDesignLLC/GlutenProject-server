@@ -12,7 +12,7 @@ export const getImages = (product, size) => {
     dpr4: null,
   }
 
-  if (product.imageSource === 'amazon') {
+  if (product.imageSource === 'Amazon') {
     images.dpr1 = product.image
     images.dpr2 = product.image
     images.dpr3 = product.image
