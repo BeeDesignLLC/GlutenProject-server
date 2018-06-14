@@ -10,7 +10,7 @@
     "test": "exit"
   },
   "dependencies": {
-    "algoliasearch": "3.27.1",
+    "algoliasearch": "3.28.0",
     "graphcool-lib": "0.1.4",
     "imgix-core-js": "1.1.1",
     "is-present": "1.0.0",
