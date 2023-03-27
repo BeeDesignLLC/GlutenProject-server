@@ -174,9 +174,10 @@ iconv-lite@~0.4.13:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
-imgix-core-js@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/imgix-core-js/-/imgix-core-js-1.1.1.tgz#892bc1659738878cacd4b8feb5dc9e9d91e9f837"
+imgix-core-js@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/imgix-core-js/-/imgix-core-js-2.3.2.tgz#f71a418c60232700993b4bd57526a6d9e0820b95"
+  integrity sha512-O5jThQLXwlf6k8oZr7e+05LLLnxupx/MNpJftKTBnsb1A8fL2UzL/2JGK9LuOlcXQP94O7O2r8W0KZnutjc3eg==
   dependencies:
     js-base64 "^2.1.9"
     md5 "^2.2.1"
