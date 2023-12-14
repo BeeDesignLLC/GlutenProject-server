@@ -14,7 +14,7 @@
     "graphcool-lib": "0.1.4",
     "imgix-core-js": "1.1.1",
     "is-present": "1.0.0",
-    "p-queue": "2.4.2",
+    "p-queue": "8.0.1",
     "raven": "2.6.2"
   },
   "engines": {
